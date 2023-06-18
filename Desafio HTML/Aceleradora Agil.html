@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Layout Flexível</title>
+    <link rel="stylesheet" type="text/css" href="Aceleradora Agil Css.css" >
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <img src="https://ayuntamientolapeza.com/wp-content/uploads/2021/01/ICONO-CORPORACION-400x400.png">
+            <h3>Nome Genérico</h3>
+            <p>Lorem Ipsum is simply dummy text
+                of the printing and typesetting 
+                industry. Lorem Ipsum has been
+                the industry's standard dummy
+                text ever since the 1500s, when an
+                unknown printer took a galley of
+                type and scrambled it to make a 
+                type specimen book.</p>
+            
+            <ul>
+                <i><a href="#">Link1</a></i><br>
+                <i><a href="#">Link2</a></i><br>
+                <i><a href="#">Link3</a></i><br>
+                <i><a href="#">Link4</a></i><br>
+            </ul>
+        </div>
+        
+        <div class="Quadrado">
+            <h2>Lista de Tarefas</h2>
+
+            <div>
+                <input type="text" id="task-input">
+                <input type="radio" name="time" value="dia" checked> Dia
+                <input type="radio" name="time" value="noite"> Noite
+                <button class="btn-add" onclick="addTask()">Adicionar Nova Tarefa</button>
+            </div>
+
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Noite</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                            <li>Lorem Ipsum is simply dummy text</li><br>
+                        </ul>
+                    </td>
+                </tr>
+                <tbody>
+                    <tr id="task-list-dia">
+                        <!-- Aqui serão adicionadas as tarefas de dia dinamicamente -->
+                    </tr>
+                    <tr id="task-list-noite">
+                        <!-- Aqui serão adicionadas as tarefas de noite dinamicamente -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+         function addTask() {
+            var taskInput = document.getElementById('task-input');
+            var timeRadios = document.getElementsByName('time');
+            var taskListDia = document.getElementById('task-list-dia');
+            var taskListNoite = document.getElementById('task-list-noite');
+            var taskText = taskInput.value;
+            var selectedTime;
+
+            // Verifica qual botão de opção está selecionado
+            for (var i = 0; i < timeRadios.length; i++) {
+                if (timeRadios[i].checked) {
+                    selectedTime = timeRadios[i].value;
+                    break;
+                }
+            }
+
+            if (taskText.trim() !== '') {
+                var newTask = document.createElement('li');
+                var removeBtn = document.createElement('button');
+
+                newTask.textContent = taskText;
+                removeBtn.textContent = 'Remover';
+                removeBtn.onclick = function() {
+                    newTask.remove();
+                };
+
+                if (selectedTime === 'dia') {
+                    taskListDia.appendChild(newTask);
+                    taskListDia.appendChild(removeBtn);
+                } else if (selectedTime === 'noite') {
+                    taskListNoite.appendChild(newTask);
+                    taskListNoite.appendChild(removeBtn);
+                }
+
+                taskInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
